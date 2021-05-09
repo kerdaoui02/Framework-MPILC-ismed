@@ -10,7 +10,7 @@
 7-Exécuter: php bin/console server:run<br>
 
 
-Remarque:
+Résultat:<br><br>
 ![1](https://user-images.githubusercontent.com/51141977/117574379-14504d00-b0dd-11eb-8d8a-38f2ab7ae00c.png)
 
 ![2](https://user-images.githubusercontent.com/51141977/117574607-43b38980-b0de-11eb-838e-1d4a3e216242.png)
