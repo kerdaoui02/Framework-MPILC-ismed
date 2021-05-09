@@ -5,8 +5,8 @@
 3-Ouvrir l'invite de commande sur le projet<br>
 4-Tapper: composer update<br>
 5-Création de la base de données: php bin/console doctrine:database:create<br>
-6-Exécuter la commande suvante: php bin/console make:migration<br>
-6-Exécuter la commande suvante: php bin/console doctrine:migrations:migrate<br>
+6-Exécuter la commande suivante: php bin/console make:migration<br>
+6-Exécuter la commande suivante: php bin/console doctrine:migrations:migrate<br>
 7-Exécuter: php bin/console server:run<br>
 
 
