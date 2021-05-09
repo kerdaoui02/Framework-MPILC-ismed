@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification compte{% endblock %}
+
+{% block body %}
+        <h1>Modifier votre compte</h1>
+        <fieldset>
+                <legend>Modification</legend>
+                {{ form_start(form, {'attr': {'id': 'new_edit_utilisateur'}}) }}
+                {# utilisation de classes bootstrap pour la mise en forme #}
+                        <div class="row">
+                                <div class="col-12">
+                                        {{ form_label(form.username) }}
+                                        {{ form_widget(form.username) }}
+                                </div>
+                                <div class="col-12">
+                                        {{ form_label(form.password) }}
+                                        {{ form_widget(form.password) }}
+                                </div>
+                                <div class="col-12">
+                                        <label for="verifpass">Saisir une seconde fois le mot de passe</label>
+                                        <input type="password" id="verifpass" required>
+                                </div>
+                        </div>
+                        <button class="btn btn-success">{{ button_label|default('Mettre à jour') }}</button>
+                {{ form_end(form) }}
+        </fieldset>
+
+        <a class="btn btn-outline-primary" href="{{ path('membre') }}">Page membre</a>
+
+        {{ include('utilisateur/_delete_form.html.twig') }}
+{% endblock %}

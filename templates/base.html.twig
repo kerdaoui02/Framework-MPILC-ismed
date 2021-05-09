@@ -1,0 +1,77 @@
+<!-- app/Resources/views/base.html.twig -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html"; charset=utf-8" />
+        <title>{% block title %}symblog{% endblock %} - Frameworks de Développement Rapide</title>
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+               {% block stylesheets %}
+            <link href='http://fonts.googleapis.com/css?family=Irish+Grover' rel='stylesheet' type='text/css'>
+            <link href='http://fonts.googleapis.com/css?family=La+Belle+Aurore' rel='stylesheet' type='text/css'>
+            <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet" />
+        {% endblock %}
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+
+           <body>
+
+        <section id="wrapper">
+            <header id="header">
+                <div class="top">
+                    {% block navigation %}
+                        <nav>
+                            <img src="{{ asset('images/isimed.jpg') }}" width="100" height="100" >
+                            <ul class="navigation">
+                                <li><a href="{{ path('accueil') }}">Acuiel</a></li>
+                                <li><a href="{{ path('presentation') }}">Présentation</a></li>
+                                <li><a href="{{ path('presentation') }}">Contact</a></li>
+
+
+
+                             {% if app.user %}
+                                <li> <a class="btn btn-outline-info" href="{{ path('membre') }}">Page membre</a></li>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                      <li>   <a class="btn btn-outline-warning" href="{{ path('admin') }}">Page admin</a></li>
+                                {% endif %}
+
+                                       <li>  Bonjour {{ app.user.username }} <a class="btn btn-sm btn-danger" href="{{ path('app_logout') }}">Déconnexion</a></li>
+
+                        {% else %}
+
+                                       <li>  <a class="btn btn-sm btn-primary" href="{{ path('utilisateur_new') }}">S'inscrire</a></li>
+                                       <li>  <a class="btn btn-sm btn-success" href="{{ path('app_login') }}">Se connecter</a></li>
+
+                        {% endif %}
+                    {% endblock %}
+                     </ul>
+                        </nav>
+
+
+                </div>
+
+                <hgroup>
+                    <h2>{% block blog_title %}<a href="#">MP 1 ILC </a>{% endblock %}</h2>
+                    <h3>{% block blog_tagline %}<a href="#">Institut Supèrieur de l'Informatique de Médenine<br><h4>Frameworks de Développement Rapide</h4></a>{% endblock %}</h3>
+                </hgroup>
+            </header>
+
+            <section class="main-col">
+                {% block body %}{% endblock %}
+            </section>
+            <aside class="sidebar">
+                {% block sidebar %}<img src="{{ asset('images/institut.jpg') }}"width="300" height="200" >   {% endblock %}
+            </aside>
+
+            <div id="footer">
+                {% block footer %}
+                    created by <a href="">MP 1 ILC </a>
+                {% endblock %}
+            </div>
+        </section>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
+

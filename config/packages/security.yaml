@@ -1,0 +1,46 @@
+security:
+    encoders:
+        App\Entity\Utilisateur:
+            algorithm: auto
+
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\Utilisateur
+                property: username
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: true
+            lazy: true
+            provider: app_user_provider
+            guard:
+                authenticators:
+                    - App\Security\LoginFormAuthenticator
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+          - { path: ^/logout, roles: ROLE_USER }
+          # permet de rendre la route /new accessible pour les utilisateurs anonymes (non connecté)
+          - { path: ^/utilisateur/new, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+          # bloque toutes les routes commençant par /utilisateur sauf la ligne du dessus
+          - { path: ^/utilisateur, roles: ROLE_USER }
+          
+          - { path: ^/membre, roles: IS_AUTHENTICATED_FULLY }
+          - { path: ^/admin, roles: ROLE_ADMIN }
+
